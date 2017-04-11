@@ -38,7 +38,7 @@ public class Main {
 
 	private static void delete() {
 		// TODO Auto-generated method stub
-		
+		System.out.println();
 	}
 
 	private static void Ser() {
