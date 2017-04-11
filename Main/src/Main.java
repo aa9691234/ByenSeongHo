@@ -49,7 +49,7 @@ public class Main {
 	private static void delete() {
 		// TODO Auto-generated method stub
 		int num;
-		System.out.println("당신이 고른 기능은 (삭제) 기능 입니까? [맞으면 1번 틀리면 2번]");
+		System.out.println("당신이 고른 기능은 (삭제) 기능 입니까? [맞으면 1번 틀리면 아무숫자]");
 		num = sc.nextInt();
 		if(num==1){
 			
@@ -58,26 +58,88 @@ public class Main {
 		}
 	}
 
-	private static void Ser() {
+	private static void Ser() throws IOException {
 		// TODO Auto-generated method stub
 		int num;
-		System.out.println("당신이 고른 기능은 (검색) 기능 입니까? [맞으면 1번 틀리면 2번]");
+		System.out.println("당신이 고른 기능은 (검색) 기능 입니까? [맞으면 1번 틀리면 아무숫자]");
 		num = sc.nextInt();
 		if(num==1){
+			BufferedReader r = new BufferedReader(new FileReader(WPath));
 			int Num_s = -1;
 			while(Num_s != 0){
 			System.out.println("[선택 사항]");
-			System.out.println("1. 책 이름  \t 2. 저자  \t 3. 통합 ");
+			System.out.println("1. 책 이름  \t 2. 책 저자  \t 3. 통합 [유사한 단어 만있어도 출력됩니다.]");
 			System.out.println("선택 기능?");
 			int ser = sc.nextInt();
 			switch(ser){
 			case 1:
+				
+				sc.nextLine();
+				System.out.println("책 이름 를[을] 적어주세요.");
+				String BoName= sc.nextLine();
+				System.out.println("책 이름이 " + "[" + BoName + "]" + "이 맞습니까? [맞으면 1번 틀리면 아무숫자]");
+				int Num_n = sc.nextInt();
+				if(Num_n == 1){
+					
+				int Count = 0;
+				String Reading = "";
+				while((Reading = r.readLine()) != null){
+				String[] split = Reading.split("\t");
+				if(split[0].equals(BoName)){
+					Count++;
+					System.out.println(Count + ". " + Reading);
+					
+				}
+				
+				}
+					System.out.println("합계 : " + Count + "\n");
+				}
 				Num_s = 0;
 				break;
 			case 2:
+				sc.nextLine();
+				System.out.println("책 저자 를[을] 적어주세요.");
+				String BooName= sc.nextLine();
+				System.out.println("책 저자의이름이 " + "[" + BooName + "]" + "이 맞습니까? [맞으면 1번 틀리면 아무숫자]");
+				int Num_a = sc.nextInt();
+				if(Num_a == 1){
+					
+				int Count = 0;
+				String Reading = "";
+				while((Reading = r.readLine()) != null){
+				String[] split = Reading.split("\t");
+				if(split[1].equals(BooName)){
+					Count++;
+					System.out.println(Count + ". " + Reading);
+					
+				}
+				
+				}
+				System.out.println("합계 : " + Count + "\n");
+				}
 				Num_s = 0;
 				break;
 			case 3:
+				sc.nextLine();
+				System.out.println("통합 단어 를 적어주세요.");
+				String BookName= sc.nextLine();
+				System.out.println("통합 단어가 " + "[" + BookName + "]" + "이 맞습니까? [맞으면 1번 틀리면 아무숫자]");
+				int Num_b = sc.nextInt();
+				if(Num_b == 1){
+					
+				int Count = 0;
+				String Reading = "";
+				while((Reading = r.readLine()) != null){
+				
+				if(Reading.contains(BookName)){
+					Count++;
+					System.out.println(Count + ". " + Reading);
+					
+				}
+				
+				}
+				System.out.println("합계 : " + Count + "\n");
+				}
 				Num_s = 0;
 				break;
 			default:
@@ -94,7 +156,7 @@ public class Main {
 	private static void print() throws IOException {
 		// TODO Auto-generated method stub
 		int num;
-		System.out.println("당신이 고른 기능은 (모두 출력) 기능 입니까? [맞으면 1번 틀리면 2번]");
+		System.out.println("당신이 고른 기능은 (모두 출력) 기능 입니까? [맞으면 1번 틀리면 아무숫자]");
 		num = sc.nextInt();
 		if(num==1){
 			try {
@@ -120,7 +182,7 @@ public class Main {
 	private static void Plus() throws IOException {
 		// TODO Auto-generated method stub
 		int num;
-		System.out.println("당신이 고른 기능은 (추가) 기능 입니까? [맞으면 1번 틀리면 2번]");
+		System.out.println("당신이 고른 기능은 (추가) 기능 입니까? [맞으면 1번 틀리면 아무숫자]");
 		num = sc.nextInt();
 		if(num==1){
 			File file = new File(FPath);
@@ -151,7 +213,7 @@ public class Main {
 				System.out.println("책 이름 : " + Boname + "\t책 저자 : " + BoWrit + "\t출판사 : " + pu + "\t가격 : " + pay);
 				System.out.println("입력된 정보가 맞습니까? [맞으면 1번 틀리면 2번]");
 				set = sc.nextInt();
-				if(set != 2){
+				if(set == 1){
 					set = 0;
 					w.write(Boname + "\t" + BoWrit + "\t" + pu + "\t" + pay);
 					w.newLine();
