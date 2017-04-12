@@ -135,16 +135,17 @@ public class Main {
 					
 				int Count = 0;
 				String Reading = "";
+				System.out.println("List\t책 이름\t책 저자\t출판사\t가격");
 				while((Reading = r.readLine()) != null){
 				String[] split = Reading.split("\t");
 				if(split[0].equals(BoName)){
 					Count++;
-					System.out.println(Count + ". " + Reading);
+					System.out.println(Count + ".\t" + Reading);
 					
 				}
 				
 				}
-					System.out.println("합계 : " + Count + "\n");
+					System.out.println("Total : " + Count + "\n");
 				}
 				r.close();
 				Num_s = 0;
@@ -159,16 +160,17 @@ public class Main {
 					
 				int Count = 0;
 				String Reading = "";
+				System.out.println("List\t책 이름\t책 저자\t출판사\t가격");
 				while((Reading = r.readLine()) != null){
 				String[] split = Reading.split("\t");
 				if(split[1].equals(BooName)){
 					Count++;
-					System.out.println(Count + ". " + Reading);
+					System.out.println(Count + ".\t" + Reading);
 					
 				}
 				
 				}
-				System.out.println("합계 : " + Count + "\n");
+				System.out.println("Total : " + Count + "\n");
 				}
 				Num_s = 0;
 				r.close();
@@ -183,16 +185,17 @@ public class Main {
 					
 				int Count = 0;
 				String Reading = "";
+				System.out.println("List\t책 이름\t책 저자\t출판사\t가격");
 				while((Reading = r.readLine()) != null){
 				
 				if(Reading.contains(BookName)){
 					Count++;
-					System.out.println(Count + ". " + Reading);
+					System.out.println(Count + ".\t" + Reading);
 					
 				}
 				
 				}
-				System.out.println("합계 : " + Count + "\n");
+				System.out.println("Total : " + Count + "\n");
 				}
 				Num_s = 0;
 				break;
@@ -218,11 +221,12 @@ public class Main {
 				BufferedReader r = new BufferedReader(new FileReader(WPath));
 				int Count = 0;
 				String Reading = "";
+				System.out.println("List\t책 이름\t책 저자\t출판사\t가격");
 				while((Reading = r.readLine()) !=null){
 					Count++;
 					System.out.println(Count + ".\t" +Reading);
 				}
-				System.out.println("합계 : "  + Count + "\n");
+				System.out.println("Total : "  + Count + "\n");
 				r.close();
 				
 			} catch (FileNotFoundException e) {
