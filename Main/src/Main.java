@@ -46,12 +46,61 @@ public class Main {
 		
 	}
 
-	private static void delete() {
+	private static void delete() throws IOException {
 		// TODO Auto-generated method stub
 		int num;
 		System.out.println("당신이 고른 기능은 (삭제) 기능 입니까? [맞으면 1번 틀리면 아무숫자]");
 		num = sc.nextInt();
 		if(num==1){
+			try {
+				sc.nextLine();
+				System.out.println("삭제 할 책의 이름을 적어주세요.");
+				String BoName = sc.nextLine();
+				
+				BufferedReader r = new BufferedReader(new FileReader(WPath));
+				File CPath = new File("C:\\Book\\BookCopy.txt");
+				CPath.createNewFile();
+				
+				int Num = 0;
+				String Ser = "";
+				while((Ser = r.readLine()) != null ){
+					String[] split = Ser.split("\t");
+					if(!(split[0].equals(BoName))){
+						BufferedWriter ww = new BufferedWriter(new FileWriter("C:\\Book\\BookCopy.txt"));
+						ww.write(Ser);
+						ww.newLine();
+						ww.close();
+					}else{
+						Num++;
+					}
+				}
+				r.close();				
+				BufferedWriter format = new BufferedWriter(new FileWriter(WPath));
+				format.close();
+				Ser = "";
+				
+				BufferedReader rr = new BufferedReader(new FileReader("C:\\Book\\BookCopy.txt"));
+				while((Ser = rr.readLine()) != null ){
+					BufferedWriter w = new BufferedWriter(new FileWriter(WPath));
+						w.write(Ser);
+						w.newLine();
+						w.close();
+				}
+				
+				
+				if(Num == 0){
+					System.out.println("삭제하는 키워드는 존재 하지 않습니다.");
+				}
+				
+				rr.close();
+				CPath.deleteOnExit();
+				
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 		}else{
 			System.out.println("다른 기능을 선택해주세요.");
