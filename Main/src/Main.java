@@ -57,16 +57,19 @@ public class Main {
 				System.out.println("삭제 할 책의 이름을 적어주세요.");
 				String BoName = sc.nextLine();
 				
-				BufferedReader r = new BufferedReader(new FileReader(WPath));
+				
 				File CPath = new File("C:\\Book\\BookCopy.txt");
+				File WCPath = new File(WPath);
+
 				CPath.createNewFile();
 				
 				int Num = 0;
 				String Ser = "";
+				BufferedReader r = new BufferedReader(new FileReader(WPath));
 				while((Ser = r.readLine()) != null ){
 					String[] split = Ser.split("\t");
 					if(!(split[0].equals(BoName))){
-						BufferedWriter ww = new BufferedWriter(new FileWriter("C:\\Book\\BookCopy.txt"));
+						BufferedWriter ww = new BufferedWriter(new FileWriter("C:\\Book\\BookCopy.txt",true));
 						ww.write(Ser);
 						ww.newLine();
 						ww.close();
@@ -75,13 +78,13 @@ public class Main {
 					}
 				}
 				r.close();				
-				BufferedWriter format = new BufferedWriter(new FileWriter(WPath));
-				format.close();
+				WCPath.delete();
+				
 				Ser = "";
 				
 				BufferedReader rr = new BufferedReader(new FileReader("C:\\Book\\BookCopy.txt"));
 				while((Ser = rr.readLine()) != null ){
-					BufferedWriter w = new BufferedWriter(new FileWriter(WPath));
+					BufferedWriter w = new BufferedWriter(new FileWriter(WPath,true));
 						w.write(Ser);
 						w.newLine();
 						w.close();
@@ -93,7 +96,7 @@ public class Main {
 				}
 				
 				rr.close();
-				CPath.deleteOnExit();
+				CPath.delete();
 				
 				
 			} catch (FileNotFoundException e) {
@@ -143,6 +146,7 @@ public class Main {
 				}
 					System.out.println("합계 : " + Count + "\n");
 				}
+				r.close();
 				Num_s = 0;
 				break;
 			case 2:
@@ -167,6 +171,7 @@ public class Main {
 				System.out.println("합계 : " + Count + "\n");
 				}
 				Num_s = 0;
+				r.close();
 				break;
 			case 3:
 				sc.nextLine();
@@ -194,6 +199,7 @@ public class Main {
 			default:
 				Num_s = 1;
 				System.out.println("제대로된 입력값을 입력해주세요");
+				r.close();
 				break;
 			}
 		 }
@@ -214,9 +220,10 @@ public class Main {
 				String Reading = "";
 				while((Reading = r.readLine()) !=null){
 					Count++;
-					System.out.println(Count + ". " +Reading);
+					System.out.println(Count + ".\t" +Reading);
 				}
 				System.out.println("합계 : "  + Count + "\n");
+				r.close();
 				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
